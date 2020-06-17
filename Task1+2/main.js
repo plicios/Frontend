@@ -13,13 +13,6 @@ function startTime() {
     if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
     return i;
   }
-  function addAlertEvents() {
-    Array.prototype.slice.call(document.getElementsByTagName("svg")).forEach(element => {
-        element.addEventListener('click', () => {
-            alert("Unfortunatelly expand is not working.");
-          }, false); 
-    })
-  }
 
   function bigImg(x) {
     x.style.width = "100px";
@@ -30,4 +23,39 @@ function startTime() {
   }
 
   startTime()
-  addAlertEvents()
+
+function doScrolling(elementY, duration) { 
+  var startingY = window.pageYOffset;
+  var diff = elementY - startingY;
+  var start;
+
+  console.log(startingY)
+  console.log(elementY)
+  console.log(diff)
+
+  window.requestAnimationFrame(function step(timestamp) {
+    if (!start) start = timestamp;
+    var time = timestamp - start;
+    var percent = Math.min(time / duration, 1);
+
+    window.scrollTo(0, startingY + diff * percent);
+
+    if (time < duration) {
+      window.requestAnimationFrame(step);
+    }
+  })
+}
+
+function addHrefListeners() {
+  Array.prototype.slice.call(document.getElementsByTagName("a")).forEach(element => {
+    element.addEventListener('click', () => {
+        var targetId = element.getAttribute("href").substring(1)
+        console.log(targetId)
+        var targetElement = document.getElementById(targetId)
+        doScrolling(targetElement.getBoundingClientRect().top + window.scrollY, 500)
+      }, false); 
+})
+}
+
+
+addHrefListeners()
