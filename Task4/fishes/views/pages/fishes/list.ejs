@@ -1,0 +1,29 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Minimum pH</th>
+            <th>Maximum pH</th>
+            <th>Minimum volume [l]</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% fishes.forEach(function(fish){ %>
+            <tr>
+                <td><%= fish.id %></td>
+                <td><%= fish.name %></td>
+                <td><%= fish.min_ph %></td>
+                <td><%= fish.max_ph %></td>
+                <td><%= fish.min_l %></td>
+                <td>
+                    <a href="/fishes/edit/<%= fish.id %>" class="btn btn-primary">Edit</a>
+                    <form class="d-inline" action="/fishes/delete/<%= fish.id%>" method="POST">
+                        <input type="submit" value="Delete" class="btn btn-danger">
+                    </form>
+                </td>
+            </tr>
+        <% }) %>
+    </tbody>
+</table>
