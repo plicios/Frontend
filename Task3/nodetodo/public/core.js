@@ -45,6 +45,7 @@ function mainController($scope, $http) {
     $http
       .put("/api/todos/" + item._id, item)
       .success(function (data) {
+        $scope.todos = data;
       })
       .error(function (data) {
         console.log("Error: " + data);

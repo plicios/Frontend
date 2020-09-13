@@ -1,0 +1,21 @@
+body {
+  padding: 10px;
+  font-family: sans-serif;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.character {
+  line-height: 40px !important;
+  padding: 1rem;
+}
+
+.add-character {
+  margin-bottom: 1rem;
+}
+
+.close{
+  margin-left: 1rem;
+}
